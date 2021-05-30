@@ -1,4 +1,6 @@
 import pygame
+import sys
+
 
 # text function
 def draw_text(text_value, x, y, font_size, color, screen):
@@ -8,10 +10,16 @@ def draw_text(text_value, x, y, font_size, color, screen):
     text_rect.topleft = (x, y)
     screen.blit(text, text_rect)
 
+
 # rgb function
 def color_variation(color):
     if color.hsla[0] < 359:
-            color.hsla = color.hsla[0] + 1, color.hsla[1], color.hsla[2], color.hsla[3] 
+        color.hsla = color.hsla[0] + 1, color.hsla[1], color.hsla[2], color.hsla[3]
     else:
-        color.hsla = 0, color.hsla[1], color.hsla[2], color.hsla[3] 
+        color.hsla = 0, color.hsla[1], color.hsla[2], color.hsla[3]
     return color
+
+
+def quit_game():
+    pygame.quit()
+    sys.exit()
