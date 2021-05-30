@@ -1,12 +1,15 @@
 import pygame
 from pygame.locals import *
 
+from constants import WINDOW
+from main_menu import main_menu
+
 import sys
 import os
 
 pygame.init()
 
-screen = pygame.display.set_mode((700, 700))
+screen = pygame.display.set_mode((WINDOW, WINDOW))
 clock = pygame.time.Clock()
 
 snake_logo = pygame.image.load(os.path.join("assets", "Start.png"))
@@ -22,7 +25,7 @@ while running:
             pygame.quit()
             sys.exit()
         elif event.type == KEYDOWN:
-            pass
+            main_menu(screen)
 
     screen.fill((0, 0, 0))
     screen.blit(snake_logo, (0, 0))
