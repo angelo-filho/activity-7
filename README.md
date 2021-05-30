@@ -1,1 +1,1 @@
-Atividade 7 de Laboratório de Programação. Jogo "Snake"
+# Atividade 7 de Laboratório de Programação. Jogo "Snake"

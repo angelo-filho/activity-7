@@ -2,6 +2,8 @@ from pygame.locals import *
 from constants import *
 from suports import *
 
+from credits_screen import credits_screen
+
 
 def main_menu(screen):
     # setting basic stats for menu window
@@ -46,7 +48,9 @@ def main_menu(screen):
                         current_option = 0
                 # getting the select key
                 elif event.key == K_SPACE:
-                    if current_option == 2:
+                    if current_option == 1:
+                        credits_screen(screen)
+                    elif current_option == 2:
                         quit_game()
 
         screen.fill(BLACK)
