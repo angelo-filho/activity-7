@@ -3,8 +3,8 @@ from pygame.locals import *
 
 from constants import WINDOW
 from main_menu import main_menu
+from suports import quit_game
 
-import sys
 import os
 
 pygame.init()
@@ -22,8 +22,7 @@ running = True
 while running:
     for event in pygame.event.get():
         if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
+            quit_game()
         elif event.type == KEYDOWN:
             main_menu(screen)
 
