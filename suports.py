@@ -1,5 +1,6 @@
 import pygame
 import sys
+import json
 
 
 # text function
@@ -19,6 +20,7 @@ def color_variation(color):
         color.hsla = 0, color.hsla[1], color.hsla[2], color.hsla[3]
     return color
 
+
 def option_choice(current_text, current_option, screen, options_color):
     # looping for current option
     for index, option in enumerate(current_text):
@@ -28,7 +30,27 @@ def option_choice(current_text, current_option, screen, options_color):
             draw_text(option[0], option[1], option[2], option[3], option[4], screen)
 
 
-
 def quit_game():
     pygame.quit()
     sys.exit()
+
+
+def load_high_score():
+    score_file = open("save.json", "r")
+    score = score_file.readline()
+    if score:
+        score = json.loads(score)["high_score"]
+    else:
+        score_file.close()
+        score_file = open("save.json", "w")
+        score = 0
+        score_file.write(json.dumps({"high_score": 0}))
+        score_file.close()
+
+    return score
+
+
+def save_high_score(score):
+    score_file = open("save.json", "w")
+    score_file.write(json.dumps({"high_score": score}))
+    score_file.close()

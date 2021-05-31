@@ -39,10 +39,10 @@ def create_grid(surface):
 
 
 def create_wall(surface):
-    pygame.draw.line(surface, "#3B7AD8", (0, 0), (0, 700), 40)
-    pygame.draw.line(surface, "#3B7AD8", (0, 590), (700, 590), 21)
-    pygame.draw.line(surface, "#3B7AD8", (0, 0), (700, 0), 40)
-    pygame.draw.line(surface, "#3B7AD8", (690, 0), (690, 700), 21)
+    pygame.draw.line(surface, "#3B7AD8", (16, 0), (16, 700), 32)
+    pygame.draw.line(surface, "#3B7AD8", (0, 584), (700, 584), 32)
+    pygame.draw.line(surface, "#3B7AD8", (0, 15), (700, 15), 32)
+    pygame.draw.line(surface, "#3B7AD8", (690, 0), (690, 700), 32)
 
 
 def head_movement(head, cur_dir):
@@ -66,7 +66,7 @@ def snake_movement(snake, head):
 
 
 def snake_collision_with_walls(head):
-    if head.x >= 680 or head.x < 20 or head.y >= 680 or head.y < 120:
+    if head.x >= 700 - 32 or head.x < 32 or head.y >= 700 - 32 or head.y < 100:
         return True
 
     return False
@@ -131,6 +131,7 @@ bite_sound = pygame.mixer.Sound("sounds/bite__apple.wav")
 # https://freesound.org/people/harrietniamh/sounds/415079/
 death_sound = pygame.mixer.Sound("sounds/death-sound-effect.wav")
 
+
 def gameplay(screen):
     current_dir = 1
 
@@ -153,7 +154,7 @@ def gameplay(screen):
     # create_grid(bg)
     create_wall(bg)
     score = 0
-    high_score = 0
+    high_score = load_high_score()
 
     running = True
 
@@ -197,6 +198,8 @@ def gameplay(screen):
         screen.blit(apple, apple_pos)
 
         if snake_self_collision(snake_pieces, head_pos) or snake_collision_with_walls(head_pos):
+            if score > high_score:
+                save_high_score(score)
             death_sound.play()
             pygame.time.wait(2000)
             restart = end_game_screen(screen)
