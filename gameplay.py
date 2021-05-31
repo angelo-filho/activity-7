@@ -28,16 +28,6 @@ def random_pos(snake):
     return pos_x, pos_y
 
 
-def create_grid(surface):
-    for y in range(35):
-        for x in range(35):
-            r = pygame.Rect(x * 20, y * 20, 20, 20)
-            if (x + y) % 2 == 0:
-                pygame.draw.rect(surface, "#75CFF6", r)
-            else:
-                pygame.draw.rect(surface, "#51A8E8", r)
-
-
 def create_wall(surface):
     pygame.draw.line(surface, "#3B7AD8", (16, 0), (16, 700), 32)
     pygame.draw.line(surface, "#3B7AD8", (0, 584), (700, 584), 32)
@@ -151,8 +141,8 @@ def gameplay(screen):
     apple_pos = Vector2(random_pos(snake_pieces))
 
     bg = pygame.Surface([WINDOW, 600])
-    # create_grid(bg)
     create_wall(bg)
+
     score = 0
     high_score = load_high_score()
 
