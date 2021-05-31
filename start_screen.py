@@ -9,6 +9,7 @@ import os
 
 pygame.init()
 
+
 screen = pygame.display.set_mode((WINDOW, WINDOW))
 clock = pygame.time.Clock()
 
@@ -18,6 +19,7 @@ message = pygame.image.load(os.path.join("assets", "start_screen_message.png"))
 message_frames = 0
 
 running = True
+
 
 while running:
     for event in pygame.event.get():
