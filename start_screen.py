@@ -11,6 +11,7 @@ pygame.init()
 
 
 screen = pygame.display.set_mode((WINDOW, WINDOW))
+pygame.display.set_caption("Snake")
 clock = pygame.time.Clock()
 
 snake_logo = pygame.image.load(os.path.join("assets", "Start.png"))
