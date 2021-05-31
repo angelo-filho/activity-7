@@ -17,8 +17,8 @@ def load_2x_img(dir_name, file_name):
 
 
 def random_pos(snake):
-    pos_x = (randint(200, WINDOW - 40) // 32) * 32
-    pos_y = (randint(200, WINDOW - 40) // 32) * 32
+    pos_x = (randint(132, WINDOW - 32) // 32) * 32
+    pos_y = (randint(132, WINDOW - 32) // 32) * 32
 
     for piece in snake:
         if Vector2(pos_x, pos_y) == piece:
@@ -138,7 +138,7 @@ def gameplay(screen):
     clock = pygame.time.Clock()
 
     # Setup snake
-    head_pos = Vector2(320, 320)
+    head_pos = Vector2(320, 384)
     snake_pieces = [head_pos, Vector2(head_pos.x - 32, head_pos.y), Vector2(head_pos.x - 64, head_pos.y)]
 
     last_pos_y = 0

@@ -36,6 +36,10 @@ def quit_game():
 
 
 def load_high_score():
+    try:
+        open("save.json", "x")
+    except IOError:
+        pass
     score_file = open("save.json", "r")
     score = score_file.readline()
     if score:
