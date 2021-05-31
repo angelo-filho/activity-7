@@ -1,16 +1,12 @@
 from pygame.locals import *
-
 from suports import *
-
 import os
 
 credit = pygame.image.load(os.path.join("assets", "Credits.png"))
 header_color = pygame.Color("#E16D2B")
 
-
 def credits_screen(screen):
     clock = pygame.time.Clock()
-
     running = True
 
     while running:

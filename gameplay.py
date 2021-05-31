@@ -146,6 +146,8 @@ def gameplay(screen):
     bg = pygame.Surface([WINDOW, 600])
     # create_grid(bg)
     create_wall(bg)
+    score = 0
+    high_score = 0
 
     running = True
 
@@ -170,6 +172,7 @@ def gameplay(screen):
         if head_pos == apple_pos:
             apple_pos = Vector2(random_pos(snake_pieces))
             snake_pieces.append(Vector2(snake_pieces[-1].x, snake_pieces[-1].y))
+            score += 1
 
         last_pos_y = new_pos_y
         new_pos_y = head_pos.y
@@ -178,6 +181,8 @@ def gameplay(screen):
         new_pos_x = head_pos.x
 
         screen.fill("#203BC7")
+        draw_text(f"Score: {score}", 40, 0, 60, WHITE, screen)
+        draw_text(f"H.Score: {high_score}", 370, 0, 60, WHITE, screen)
         screen.blit(bg, (0, 100))
         draw_snakes_head(screen, head_pos, current_dir)
         draw_snake(screen, snake_pieces)
