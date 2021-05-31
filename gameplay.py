@@ -122,6 +122,7 @@ snake_head_hor = load_2x_img("assets", "snake_head_hor.png")
 snake_body = load_2x_img("assets", "snake_body.png")
 snake_tail = load_2x_img("assets", "snake_tail.png")
 snake_tail_hor = load_2x_img("assets", "snake_tail_hor.png")
+apple = load_2x_img("assets", "apple.png")
 
 
 def gameplay(screen):
@@ -141,8 +142,6 @@ def gameplay(screen):
 
     # Setup apple
     apple_pos = Vector2(random_pos(snake_pieces))
-    apple = pygame.Surface([32, 32])
-    apple.fill(RED)
 
     bg = pygame.Surface([WINDOW, 600])
     # create_grid(bg)
@@ -172,12 +171,6 @@ def gameplay(screen):
             apple_pos = Vector2(random_pos(snake_pieces))
             snake_pieces.append(Vector2(snake_pieces[-1].x, snake_pieces[-1].y))
 
-        if snake_self_collision(snake_pieces, head_pos) or snake_collision_with_walls(head_pos):
-            restart = end_game_screen(screen)
-            if restart:
-                gameplay(screen)
-            running = False
-
         last_pos_y = new_pos_y
         new_pos_y = head_pos.y
 
@@ -190,5 +183,12 @@ def gameplay(screen):
         draw_snake(screen, snake_pieces)
         draw_snakes_tail(screen, snake_pieces)
         screen.blit(apple, apple_pos)
+
+        if snake_self_collision(snake_pieces, head_pos) or snake_collision_with_walls(head_pos):
+            restart = end_game_screen(screen)
+            if restart:
+                gameplay(screen)
+            running = False
+
         pygame.display.flip()
-        clock.tick(20)
+        clock.tick(10)
