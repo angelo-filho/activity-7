@@ -60,12 +60,8 @@ def main_menu(screen):
         # function for rgb text
         color_variation(menu_color)
 
-        # looping for current option
-        for index, option in enumerate(menu_texts):
-            if index == current_option:
-                draw_text(option[0], option[1], option[2], option[3], color_variation(options_color), screen)
-            else:
-                draw_text(option[0], option[1], option[2], option[3], option[4], screen)
+        # calling the choice function
+        option_choice(menu_texts, current_option, screen, options_color)
 
         # drawing the instructions
         screen.blit(instructions_left, (65, 630))

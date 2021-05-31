@@ -19,6 +19,15 @@ def color_variation(color):
         color.hsla = 0, color.hsla[1], color.hsla[2], color.hsla[3]
     return color
 
+def option_choice(current_text, current_option, screen, options_color):
+    # looping for current option
+    for index, option in enumerate(current_text):
+        if index == current_option:
+            draw_text(option[0], option[1], option[2], option[3], color_variation(options_color), screen)
+        else:
+            draw_text(option[0], option[1], option[2], option[3], option[4], screen)
+
+
 
 def quit_game():
     pygame.quit()
