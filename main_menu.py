@@ -3,6 +3,7 @@ from constants import *
 from suports import *
 
 from credits_screen import credits_screen
+from gameplay import gameplay
 
 
 def main_menu(screen):
@@ -48,7 +49,9 @@ def main_menu(screen):
                         current_option = 0
                 # getting the select key
                 elif event.key == K_SPACE:
-                    if current_option == 1:
+                    if current_option == 0:
+                        gameplay(screen)
+                    elif current_option == 1:
                         credits_screen(screen)
                     elif current_option == 2:
                         quit_game()

@@ -6,6 +6,7 @@ from suports import *
 from pygame.math import Vector2
 
 from random import randint
+from end_game_screen import end_game_screen
 
 
 def load_2x_img(dir_name, file_name):
@@ -66,7 +67,9 @@ def snake_movement(snake, head):
 
 def snake_collision_with_walls(head):
     if head.x >= 680 or head.x < 20 or head.y >= 680 or head.y < 120:
-        quit_game()
+        return True
+
+    return False
 
 
 def snake_self_collision(snake, head):
@@ -145,7 +148,9 @@ def gameplay(screen):
     # create_grid(bg)
     create_wall(bg)
 
-    while True:
+    running = True
+
+    while running:
         for event in pygame.event.get():
             if event.type == QUIT:
                 quit_game()
@@ -167,8 +172,11 @@ def gameplay(screen):
             apple_pos = Vector2(random_pos(snake_pieces))
             snake_pieces.append(Vector2(snake_pieces[-1].x, snake_pieces[-1].y))
 
-        if snake_self_collision(snake_pieces, head_pos):
-            quit_game()
+        if snake_self_collision(snake_pieces, head_pos) or snake_collision_with_walls(head_pos):
+            restart = end_game_screen(screen)
+            if restart:
+                gameplay(screen)
+            running = False
 
         last_pos_y = new_pos_y
         new_pos_y = head_pos.y
