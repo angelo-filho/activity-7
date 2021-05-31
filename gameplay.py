@@ -124,6 +124,12 @@ snake_tail = load_2x_img("assets", "snake_tail.png")
 snake_tail_hor = load_2x_img("assets", "snake_tail_hor.png")
 apple = load_2x_img("assets", "apple.png")
 
+pygame.mixer.init()
+
+# https://freesound.org/people/MEAXX/sounds/218062/
+bite_sound = pygame.mixer.Sound("sounds/bite__apple.wav")
+# https://freesound.org/people/harrietniamh/sounds/415079/
+death_sound = pygame.mixer.Sound("sounds/death-sound-effect.wav")
 
 def gameplay(screen):
     current_dir = 1
@@ -173,6 +179,7 @@ def gameplay(screen):
             apple_pos = Vector2(random_pos(snake_pieces))
             snake_pieces.append(Vector2(snake_pieces[-1].x, snake_pieces[-1].y))
             score += 1
+            bite_sound.play()
 
         last_pos_y = new_pos_y
         new_pos_y = head_pos.y
@@ -190,6 +197,8 @@ def gameplay(screen):
         screen.blit(apple, apple_pos)
 
         if snake_self_collision(snake_pieces, head_pos) or snake_collision_with_walls(head_pos):
+            death_sound.play()
+            pygame.time.wait(2000)
             restart = end_game_screen(screen)
             if restart:
                 gameplay(screen)
